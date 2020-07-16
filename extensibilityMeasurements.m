@@ -1,18 +1,16 @@
-function extensibilityMeasurements()
-clc;
-clearvars;
-figure;
-set(gcf, 'units','normalized','outerposition',[0 0 1 1]);
-hold on;
+function length = extensibilityMeasurements(f,vidFrame)
 
-heightBefore = processImage('sample2before.png');
-heightAfter = processImage('sample2after.png');
-fprintf('STRAIN:\n');
-fprintf('\t%5d - %5d = %5d\n',heightAfter,heightBefore,heightAfter-heightBefore);
+length = processImage(f,vidFrame);
+
+% heightBefore = processImage('sample2before.png');
+% heightAfter = processImage('sample2after.png');
+% fprintf('STRAIN:\n');
+% strainInPixels = heightAfter - heightBefore;
+% fprintf('\t%5d - %5d = %5d\n',heightAfter,heightBefore,strainInPixels);
 end
 
-function height = processImage(fullFileName)
-[rgbImage, ~] = imread(fullFileName);
+function height = processImage(f,rgbImage)
+%[rgbImage, ~] = imread(fullFileName);
 [BW,maskedRGBImage] = createMask(rgbImage);
 
 % Get rid of small objects.  Note: bwareaopen returns a logical.

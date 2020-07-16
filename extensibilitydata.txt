@@ -1,0 +1,3 @@
+file,lengthBefore,lengthAfter,deltaLength
+2-1 hpmcc1210 pegpla red DYE strainrate 18.MOV,83,253,170
+2-1 hpmcc1210 pegpla red DYE strainrate 72.MOV,91,240,149

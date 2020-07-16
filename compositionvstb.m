@@ -1,27 +1,7 @@
 clc;
 clearvars;
 
-analysisdata = importdata('Video Analysis - Data.tsv');
-trialbytrial = analysisdata.textdata;
-metadata = analysisdata.data;
-
-composition = rmmissing(trialbytrial(2:end,2));
-strainrate = rmmissing(trialbytrial(2:end,3));
-stbstd = rmmissing(metadata(:,4));
-trial = trialbytrial(2:end,4);
-avgstb = rmmissing(metadata(:,3));
-compositiondims = size(unique(composition));
-
-datamatrix = zeros(compositiondims(1),4);
-err = zeros(compositiondims(1),4);
-index = 1;
-for r = 1:size(datamatrix,1)
-    for c = 1:size(datamatrix,2)
-        datamatrix(r,c) = avgstb(index);
-        err(r,c) = stbstd(index);
-        index = index + 1;
-    end
-end
+[composition strainrate stbstd trial avgstb compositiondims stbmatrix err] = gatherVideoData();
 
 figure;
 compvstb = bar(datamatrix,'FaceColor','flat');
@@ -34,8 +14,8 @@ set(gcf, 'units','normalized','outerposition',[0 0 1 1]);
 drawnow;
 
 set(gca,'xtick',1:size(unique(composition)),'xticklabel',unique(composition));
-xlabel('Composition','FontSize',15);
-ylabel('Average Strain to Break','FontSize',15);
+xlabel('Composition (polymer wt% - nanoparticle wt%)','FontSize',15);
+ylabel('Average Strain to Break (%)','FontSize',15);
 title('Trends in Strain to Break','FontSize',20);
 
 ngroups = size(datamatrix, 1);
