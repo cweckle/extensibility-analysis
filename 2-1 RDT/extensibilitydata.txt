@@ -1,0 +1,2 @@
+file,lengthBefore,lengthAfter,deltaLength
+2_1RDT_HPMCC12_PEGPLA_SR36_trial1.mov,91,251,160
